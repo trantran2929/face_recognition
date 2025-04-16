@@ -13,11 +13,11 @@ Nhãn giới tính: Nam (0), Nữ (1), hoặc Không xác định (-1 cho nhóm 
 - Phân bố Tuổi: Được trực quan hóa bằng biểu đồ cột để hiển thị số lượng hình ảnh theo từng nhóm tuổi.
 - Phân bố Giới Tính: Đếm số lượng hình ảnh cho các danh mục nam, nữ và không xác định.
 ## Phương Pháp
-# Tiền Xử Lý Dữ Liệu
+### Tiền Xử Lý Dữ Liệu
 - Tải Hình Ảnh: Hình ảnh được tải từ thư mục dữ liệu và ánh xạ với nhãn tuổi và giới tính tương ứng.
 - Trích Xuất Đặc Trưng: Hình ảnh được tiền xử lý bằng hàm preprocess_input của MobileNetV2.
 Đặc trưng được trích xuất theo batch bằng mô hình MobileNetV2 đã huấn luyện trước (loại bỏ lớp đầu ra). Các đặc trưng được làm phẳng để đưa vào mô hình tùy chỉnh.
-# Kiến Trúc Mô Hình: Mô hình bao gồm:
+### Kiến Trúc Mô Hình: Mô hình bao gồm:
 - Mô Hình Cơ Sở: MobileNetV2 (được huấn luyện trước trên ImageNet) để trích xuất đặc trưng.
 - Mạng Nơ-ron Tùy Chỉnh:
 + Lớp đầu vào nhận đặc trưng đã làm phẳng từ MobileNetV2.
@@ -25,7 +25,7 @@ Nhãn giới tính: Nam (0), Nữ (1), hoặc Không xác định (-1 cho nhóm 
 + Hai lớp đầu ra:
   gender_output: Lớp softmax cho phân loại giới tính nhị phân (2 lớp).
   age_output: Lớp softmax cho phân loại nhóm tuổi (9 lớp).
-# Huấn Luyện
+### Huấn Luyện
 - Bộ Tối Ưu: Adam với tốc độ học ban đầu là 0.001.
 - Hàm Mất Mát: categorical_crossentropy cho cả đầu ra giới tính và tuổi.
 - Độ Đo: Độ chính xác (accuracy) cho cả dự đoán giới tính và tuổi.
@@ -36,5 +36,5 @@ Nhãn giới tính: Nam (0), Nữ (1), hoặc Không xác định (-1 cho nhóm 
   Kích thước batch: 32
   Số epoch: 10
   Tập huấn luyện và xác thực được chia bằng train_test_split.
-# Đánh Giá
+### Đánh Giá
 - Mô hình xuất ra xác suất cho dự đoán giới tính và tuổi.
